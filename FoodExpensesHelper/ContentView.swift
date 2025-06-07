@@ -9,13 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        VStack(spacing: 0) {
+            HStack {
+                Spacer()
+                Image(systemName: "bell")
+                    .padding(.horizontal, 30)
+                    .padding(.vertical, 10)
+            }
+            .background(Color.white)
+            
+            //カード
+            JudgmentCard(mode: 1)
         }
-        .padding()
+        .background(Color(red: 0.949, green: 0.949, blue: 0.949))
     }
 }
 

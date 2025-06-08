@@ -26,25 +26,28 @@ struct JudgmentCard: View {
     }
     
     var body: some View {
-        VStack(spacing: 20) {
-            
+        ZStack {
             Text(modeFont(mode: mode))
                 .font(.system(size: 40))
-            HStack {
-                Spacer()
-                Image(Photo[mode])
-                
-            }
-            .padding(.horizontal, 40)
+                .multilineTextAlignment(.center)
         }
-        .padding(.top, 60)
+        .frame(maxWidth: .infinity, maxHeight: 220)
         .background(Color.white)
+        .overlay(
+            Image(Photo[mode])
+                .resizable()
+                .scaledToFit()
+                .frame(width: 140)
+                .padding(.horizontal, 40),
+            alignment: .bottomTrailing
+        )
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .foregroundColor(Color(#colorLiteral(red: 0.227, green: 0.369, blue: 0.647, alpha: 1)))
         .overlay(
             RoundedRectangle(cornerRadius: 20)
                 .stroke(lineWidth: 9)
                 .fill(modeColor(mode: mode))
+                .padding(1)
         )
         .shadow(color: .black.opacity(0.1), radius: 10, y: 10)
         

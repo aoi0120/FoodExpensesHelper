@@ -14,6 +14,6 @@ struct FoodExpensesHelperApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: [SpendingModel.self])
+        .modelContainer(for: [SpendingModel.self, AppSettings.self])
     }
 }

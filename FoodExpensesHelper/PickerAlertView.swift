@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct PickerAlertView: UIViewControllerRepresentable {
-    @Environment(\.presentationMode) var presentationMode
     var title: String
     var values: [Int]
     @Binding var selectedValue: Int

@@ -13,8 +13,19 @@ class SpendingModel {
     @Attribute var date: Date
     @Attribute var amount: Int
     
-    init(date: Date, amout: Int) {
+    init(date: Date, amount: Int) {
         self.date = date
-        self.amount = amout
+        self.amount = amount
+    }
+}
+
+@Model
+final class AppSettings {
+    var budget: Int
+    var expense: Int
+    
+    init(budget: Int, expense: Int) {
+        self.budget = budget
+        self.expense = expense
     }
 }

@@ -17,6 +17,8 @@ struct DailyExpense: Identifiable {
 }
 
 struct SpendingGraphView: View {
+    
+    var remainingAmount: Int = 0 // 残りの金額を固定値として使用
     @Query private var spendings: [SpendingModel] // データを取得するためのQuery
     @State private var isLongPress = false
     
@@ -42,6 +44,15 @@ struct SpendingGraphView: View {
         }
     }
     
+    // 1日あたりの予算を計算
+    private var dayilyBudget: Double {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        let weekdayIndex = (calendar.component(.weekday, from: today) + 5) % 7
+        let remainingDays = max(1, 7 - weekdayIndex)
+        return Double(remainingAmount) / Double(remainingDays)
+    }
+    
     var body: some View {
         Chart(weeklyData) { data in
             BarMark(
@@ -58,6 +69,17 @@ struct SpendingGraphView: View {
                         .foregroundColor(Color(#colorLiteral(red: 0, green: 0.667, blue: 0.663, alpha: 1)))
                 }
             }
+            
+            RuleMark(y: .value("Budget", dayilyBudget))
+                .lineStyle(StrokeStyle(lineWidth: 1, dash: [4]))
+                .foregroundStyle(Color(#colorLiteral(red: 0, green: 0.667, blue: 0.663, alpha: 1)).opacity(0.5))
+                .annotation(position: .leading) {
+                    Text("\(Int(dayilyBudget))")
+                        .font(.caption)
+                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0.667, blue: 0.663, alpha: 1)))
+                }
+                
+            
         }
         .frame(height: 200)
         .chartXAxis {
@@ -89,6 +111,6 @@ struct SpendingGraphView: View {
         let date = Calendar.current.date(byAdding: .day, value: -6+idx, to: base)!
         ctx.insert(SpendingModel(date: date, amount: val))
     }
-    return SpendingGraphView()
+    return SpendingGraphView(remainingAmount: 7000)
         .modelContainer(container)
 }

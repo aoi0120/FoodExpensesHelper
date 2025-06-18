@@ -55,7 +55,7 @@ struct JudgmentCard: View {
             alignment: .bottomTrailing
         )
         .clipShape(RoundedRectangle(cornerRadius: 16))
-        .foregroundColor(Color(#colorLiteral(red: 0.227, green: 0.369, blue: 0.647, alpha: 1)))
+        .foregroundColor(Color(#colorLiteral(red: 0.192, green: 0.318, blue: 0.478, alpha: 1))) //3157A
         .overlay(
             RoundedRectangle(cornerRadius: 20)
                 .stroke(lineWidth: 9)

@@ -51,6 +51,7 @@ struct BottomCard: View {
                 Text("今週の食費")
                     .font(.system(size: 20))
                     .padding(.horizontal, 5)
+                    .foregroundColor(Color(#colorLiteral(red: 0.192, green: 0.318, blue: 0.478, alpha: 1))) //3157A
                 Spacer()
                 
                 BudgetPopupButton(value: currentBudget, action: onBudgetTapped)
@@ -62,11 +63,10 @@ struct BottomCard: View {
                     Text("残り \(remainingAmount)円")
                         .font(.system(size: 36, weight: .bold))
                         .padding(.trailing, 15)
+                        .foregroundColor(Color(#colorLiteral(red: 0.192, green: 0.318, blue: 0.478, alpha: 1))) //3157A
                 }
-               
-                
-                }
-            SpendingGraphView()
+            }
+            SpendingGraphView(remainingAmount: remainingAmount)
                 .padding(.bottom, 10)
         
         }
